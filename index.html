@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yin-Yang Pool | Enhanced 3D Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Professional Animation & 3D Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">YIN-YANG POOL</div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#design" class="nav-link">3D Design</a></li>
+                <li><a href="#equations" class="nav-link">Equations</a></li>
+                <li class="dropdown">
+                    <a href="#journey" class="nav-link dropdown-toggle">Journey ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#journey" class="dropdown-link">Overview</a></li>
+                        <li><a href="#part-inspiration" class="dropdown-link">Inspiration</a></li>
+                        <li><a href="#part-modeling" class="dropdown-link">Mathematical Modeling</a></li>
+                        <li><a href="#part-3d" class="dropdown-link">3D Translation</a></li>
+                        <li><a href="#part-challenges" class="dropdown-link">Challenges</a></li>
+                        <li><a href="#part-achievement" class="dropdown-link">Achievements</a></li>
+                    </ul>
+                </li>
+                <li><a href="#calculator" class="nav-link">Model to Real-Life</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <canvas id="heroCanvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-gsap="fade-up">Where Mathematics<br/>Meets Harmony</h1>
+            <p class="hero-subtitle" data-gsap="fade-up" data-delay="0.2">A revolutionary pool design combining ancient philosophy with modern mathematics</p>
+            <div class="hero-buttons" data-gsap="fade-up" data-delay="0.4">
+                <a href="#design" class="btn btn-primary">Explore 3D Model</a>
+                <a href="#equations" class="btn btn-secondary">View Equations</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- 3D Design Showcase -->
+    <section class="section-3d" id="design">
+        <div class="container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">INNOVATION</span>
+                <h2 class="section-title">Interactive 3D Pool Model</h2>
+                <p class="section-desc">Explore the mathematical precision in 3D space - Your .blend file rendered in real-time</p>
+            </div>
+            
+            <div class="design-showcase">
+                <div class="design-viewer" data-gsap="fade-up" data-delay="0.2">
+                    <div id="threejs-container" class="threejs-viewer"></div>
+                    <div class="viewer-controls">
+                        <button class="control-btn active" data-view="model">3D Model</button>
+                        <button class="control-btn" data-view="wireframe">Wireframe</button>
+                        <button class="control-btn" data-view="top">Top View</button>
+                    </div>
+                    <div class="viewer-info">
+                        <span>🖱️ Drag to rotate</span>
+                        <span>🔍 Scroll to zoom</span>
+                    </div>
+                </div>
+                
+                <div class="design-stats" data-gsap="fade-left" data-delay="0.4">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <h3>Mathematical Precision</h3>
+                            <p>Every curve defined by parametric equations with 100% accuracy. Four mathematical functions work together to create the perfect yin-yang shape.</p>
+                            <div class="stat-value">4 Core Equations</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎭</div>
+                        <div class="stat-content">
+                            <h3>3D Model Visualization</h3>
+                            <p>Built with Blender and rendered in real-time using Three.js. Explore the design from every angle with interactive controls.</p>
+                            <div class="stat-value">Real-Time 3D</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">MEET THE TEAM</span>
+                <h2 class="section-title">The Minds Behind the Design</h2>
+                <p class="section-desc">A dedicated group of students combining mathematics, engineering, and creativity</p>
+            </div>
+            
+            <div class="team-container" data-gsap="fade-up" data-delay="0.2">
+                <div class="team-photo-frame">
+                    <img src="team.jpg" alt="Project Team" class="team-photo">
+                </div>
+                
+                <div class="team-members-list">
+                    <div class="member-item">
+                        <img src="a.png" alt="Adham Wael Eldeeb" class="member-img">
+                        <div class="member-details">
+                            <h4 class="member-name">Adham Wael Eldeeb</h4>
+                            <p class="member-role">2D-3D Graphing, Web Development</p>
+                        </div>
+                    </div>
+                    
+                    <div class="member-item">
+                        <img src="k.png" alt="Kareem Omar" class="member-img">
+                        <div class="member-details">
+                            <h4 class="member-name">Kareem Omar</h4>
+                            <p class="member-role">Real Life Model, 3D Graphing</p>
+                        </div>
+                    </div>
+                    
+                    <div class="member-item">
+                        <img src="j.png" alt="Jomana" class="member-img">
+                        <div class="member-details">
+                            <h4 class="member-name">Jomana</h4>
+                            <p class="member-role">Powerpoint, Real Life Model</p>
+                        </div>
+                    </div>
+                    
+                    <div class="member-item">
+                        <img src="y.png" alt="Yassin Mohamed" class="member-img">
+                        <div class="member-details">
+                            <h4 class="member-name">Yassin Mohamed</h4>
+                            <p class="member-role">Calculations Poster</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equations Section -->
+    <section class="section-dark" id="equations">
+        <div class="container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">THE MATHEMATICS</span>
+                <h2 class="section-title">Four Equations, Infinite Possibilities</h2>
+            </div>
+            
+            <div class="equations-grid">
+                <div class="equation-card" data-gsap="fade-up" data-delay="0.1">
+                    <div class="eq-number">01</div>
+                    <h3 class="eq-title">Outer Boundary</h3>
+                    <div class="eq-formula">x² + y² = 182.25</div>
+                    <p class="eq-desc">Circular perimeter with radius r = 13.5 units</p>
+                    <div class="eq-visual">
+                        <canvas class="eq-canvas" data-type="circle"></canvas>
+                    </div>
+                </div>
+                
+                <div class="equation-card" data-gsap="fade-up" data-delay="0.2">
+                    <div class="eq-number">02</div>
+                    <h3 class="eq-title">S-Curve Divider</h3>
+                    <div class="eq-formula">x = 3sin(y/4)</div>
+                    <div class="eq-constraint">-13.5 &lt; y &lt; 13.5</div>
+                    <p class="eq-desc">Parametric curve creating the yin-yang division</p>
+                    <div class="eq-visual">
+                        <canvas class="eq-canvas" data-type="sine"></canvas>
+                    </div>
+                </div>
+                
+                <div class="equation-card" data-gsap="fade-up" data-delay="0.3">
+                    <div class="eq-number">03</div>
+                    <h3 class="eq-title">Yang Dot</h3>
+                    <div class="eq-formula">(x + 4)² + (y - 8)² ≤ 4</div>
+                    <p class="eq-desc">Small circle centered at (-4, 8) with radius 2</p>
+                    <div class="eq-visual">
+                        <canvas class="eq-canvas" data-type="smallcircle"></canvas>
+                    </div>
+                </div>
+                
+                <div class="equation-card" data-gsap="fade-up" data-delay="0.4">
+                    <div class="eq-number">04</div>
+                    <h3 class="eq-title">Composite Region</h3>
+                    <div class="eq-formula">x² + y² ≤ 182.25</div>
+                    <div class="eq-constraint">{x ≥ 3sin(y/4)} {(x-4)² + (y+8)² ≥ 4}</div>
+                    <p class="eq-desc">Main pool region with inequality constraints</p>
+                    <div class="eq-visual">
+                        <canvas class="eq-canvas" data-type="composite"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="section-concept" id="journey">
+        <div class="container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">THE CREATION PROCESS</span>
+                <h2 class="section-title">From Concept to Reality</h2>
+                <p class="section-desc">A step-by-step journey through mathematical innovation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part 1: Inspiration -->
+    <section class="concept-part part-inspiration" id="part-inspiration">
+        <div class="container">
+            <div class="part-layout">
+                <div class="part-visual" data-gsap="fade-up">
+                    <div class="visual-container">
+                        <canvas id="inspirationCanvas" class="concept-canvas"></canvas>
+                    </div>
+                </div>
+                <div class="part-content" data-gsap="fade-left">
+                    <div class="part-number">Part 01</div>
+                    <h2 class="part-title">💡 The Inspiration</h2>
+                    <div class="part-text">
+                        <p class="lead-text">"What if we could merge the ancient symbol of balance and harmony with modern mathematical precision?"</p>
+                        <p>The yin-yang symbol, representing duality and interconnectedness, provided the perfect canvas for exploring complex mathematical concepts. We envisioned a pool design that wasn't just aesthetically pleasing but also mathematically rigorous.</p>
+                        <div class="concept-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">⚖️</span>
+                                <span>Ancient Philosophy</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">📐</span>
+                                <span>Modern Mathematics</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">🌊</span>
+                                <span>Practical Design</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">☯️</span>
+                                <span>Dualism of opposite forces</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part 2: Mathematical Modeling -->
+    <section class="concept-part part-modeling" id="part-modeling">
+        <div class="container">
+            <div class="part-layout reverse">
+                <div class="part-content" data-gsap="fade-right">
+                    <div class="part-number">Part 02</div>
+                    <h2 class="part-title">📊 Mathematical Modeling</h2>
+                    <div class="part-text">
+                        <p class="lead-text">From abstract philosophy to computational precision</p>
+                        <p>The real challenge wasn't just creating equations—it was ensuring they worked together seamlessly to create a functional, beautiful design. Our approach combined analytical geometry, parametric modeling, and constraint-based design.</p>
+                        <div class="modeling-process">
+                            <div class="process-step">
+                                <div class="step-icon">🔍</div>
+                                <div class="step-details">
+                                    <h4>Research & Analysis</h4>
+                                    <p>Studied traditional yin-yang geometry and identified key mathematical properties: rotational symmetry, equal areas, smooth transitions, and complementary shapes.</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-icon">✏️</div>
+                                <div class="step-details">
+                                    <h4>Equation Development</h4>
+                                    <p>Iteratively refined parametric functions to achieve the perfect balance. Each equation was tested for continuity, smoothness, and compatibility with the others.</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-icon">🧮</div>
+                                <div class="step-details">
+                                    <h4>Validation & Testing</h4>
+                                    <p>Used computational tools to verify symmetry, calculate areas, and ensure all constraints were satisfied. Ran thousands of simulations to confirm mathematical correctness.</p>
+                                </div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-icon">🎯</div>
+                                <div class="step-details">
+                                    <h4>Optimization</h4>
+                                    <p>Fine-tuned coefficients and parameters to maximize aesthetic appeal while maintaining mathematical rigor. Achieved 99.67% balance between yin and yang regions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="part-visual" data-gsap="fade-up">
+                    <div class="visual-container">
+                        <canvas id="modelingCanvas" class="concept-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part 3: 3D Translation -->
+    <section class="concept-part part-3d" id="part-3d">
+        <div class="container">
+            <div class="part-layout">
+                <div class="part-visual" data-gsap="fade-up">
+                    <div class="visual-container">
+                        <img id="translationCanvas" class="concept-canvas blender-theme" src="osterreich-burgenland-bad-tatzmannsdorf-reiters-burgenland-resort-supreme-hotel-yin-yang-pool-fky5rc.jpg"></img>
+                    </div>
+                </div>
+                <div class="part-content" data-gsap="fade-left">
+                    <div class="part-number">Part 03</div>
+                    <h2 class="part-title">🌐 3D Model Translation</h2>
+                    <div class="part-text">
+                        <p class="lead-text">Bringing mathematical concepts into three-dimensional space</p>
+                        <p>Using Blender, we translated our 2D equations into a complete 3D model with depth functions, surface textures, and realistic proportions.</p>
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-num">1</div>
+                                <div class="step-content">
+                                    <h4>2D to 3D Conversion</h4>
+                                    <p>Extruded the mathematical curves into volumetric shapes</p>
+                                </div>
+                            </div>
+                            <div class="step">
+                                <div class="step-num">2</div>
+                                <div class="step-content">
+                                    <h4>Depth Function</h4>
+                                    <p>Depth for volumetric shapes</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part 4: Challenges & Solutions -->
+    <section class="concept-part part-challenges" id="part-challenges">
+        <div class="container">
+            <div class="section-header" data-gsap="fade-up">
+                <div class="part-number">Part 04</div>
+                <h2 class="part-title">⚠️ Challenges We Overcame</h2>
+                <p class="section-desc">The obstacles we encountered and the innovative solutions we developed</p>
+            </div>
+            
+            <div class="challenges-timeline">
+                <div class="challenge-item" data-gsap="fade-up" data-delay="0.1">
+                    <div class="challenge-header">
+                        <div class="challenge-number">01</div>
+                        <h3>Parametric Precision</h3>
+                    </div>
+                    <div class="challenge-content">
+                        <div class="challenge-problem">
+                            <strong>⚠️ The Challenge:</strong>
+                            <p>Finding the perfect sine function amplitude and period to create a smooth, natural-looking S-curve that divides the circle exactly in half while maintaining the yin-yang aesthetic.</p>
+                        </div>
+                        <div class="challenge-solution">
+                            <strong>✓ Our Solution:</strong>
+                            <p>Tested multiple coefficient combinations and settled on <code>x = 3sin(y/4)</code> for optimal balance. The coefficient 3 provides the perfect horizontal displacement, while y/4 ensures the curve completes exactly one cycle across the pool's Radius.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-item" data-gsap="fade-up" data-delay="0.2">
+                    <div class="challenge-header">
+                        <div class="challenge-number">02</div>
+                        <h3>Boundary Conditions</h3>
+                    </div>
+                    <div class="challenge-content">
+                        <div class="challenge-problem">
+                            <strong>⚠️ The Challenge:</strong>
+                            <p>Ensuring the parametric equations met the boundary conditions of the circular pool, particularly at the points where the curves intersect the circle.</p>
+                        </div>
+                        <div class="challenge-solution">
+                            <strong>✓ Our Solution:</strong>
+                            <p>With hard work and perseverance, we went in every detail to make sure it meets the boundary conditions of the circular pool, particularly at the points where the curves intersect the circle.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-item" data-gsap="fade-up" data-delay="0.3">
+                    <div class="challenge-header">
+                        <div class="challenge-number">03</div>
+                        <h3>3D Translation</h3>
+                    </div>
+                    <div class="challenge-content">
+                        <div class="challenge-problem">
+                            <strong>⚠️ The Challenge:</strong>
+                            <p>Converting 2D mathematical equations into a realistic 3D pool model with proper depth, maintaining the precise curves while adding a third dimension.</p>
+                        </div>
+                        <div class="challenge-solution">
+                            <strong>✓ Our Solution:</strong>
+                            <p>Used Blender's parametric surface tools to extrude our 2D curves into 3D geometry while preserving mathematical accuracy.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-item" data-gsap="fade-up" data-delay="0.4">
+                    <div class="challenge-header">
+                        <div class="challenge-number">04</div>
+                        <h3>Physical Model Creation</h3>
+                    </div>
+                    <div class="challenge-content">
+                        <div class="challenge-problem">
+                            <strong>⚠️ The Challenge:</strong>
+                            <p>Creating a physical prototype that accurately represents our mathematical design while being practical to fabricate at small scale.</p>
+                        </div>
+                        <div class="challenge-solution">
+                            <strong>✓ Our Solution:</strong>
+                            <p>Crafted a <code>13.5cm</code> model using clay, carefully shaping it to match our parametric equations. This hands-on approach allowed us to verify the design's physical feasibility and aesthetic appeal.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-item" data-gsap="fade-up" data-delay="0.5">
+                    <div class="challenge-header">
+                        <div class="challenge-number">05</div>
+                        <h3>Practical Scaling</h3>
+                    </div>
+                    <div class="challenge-content">
+                        <div class="challenge-problem">
+                            <strong>⚠️ The Challenge:</strong>
+                            <p>Scaling from our <code>13.5cm</code> clay model to a real <code>13.5m</code> pool while maintaining all proportions, curves, and mathematical relationships intact.</p>
+                        </div>
+                        <div class="challenge-solution">
+                            <strong>✓ Our Solution:</strong>
+                            <p>Established a precise <code>1:100</code> scale ratio. Used this ratio to scale all dimensions proportionally, ensuring that the physical model maintained the same proportions as the original design with 13.5cm Radius and 8.5cm height.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part 5: What We Achieved -->
+    <section class="concept-part part-achievement" id="part-achievement">
+        <div class="container">
+            <div class="section-header" data-gsap="fade-up">
+                <div class="part-number">Part 05</div>
+                <h2 class="part-title">🏆 Final Results & Achievements</h2>
+                <p class="section-desc">A comprehensive pool design merging mathematics, art, and engineering</p>
+            </div>
+            
+            <!-- Model Photo Showcase -->
+            <div class="model-showcase" data-gsap="fade-up" data-delay="0.2">
+                <div class="model-photo-wrapper">
+                    <div class="model-photo-frame">
+                        <img src="6.jpg" alt="13.5cm Physical Prototype" class="model-photo">
+                        <div class="model-overlay">
+                            <div class="model-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Model Radius</span>
+                                    <span class="spec-value">13.5 cm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Model Depth</span>
+                                    <span class="spec-value">8.5 cm</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ratio</span>
+                                    <span class="spec-value">1:100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="model-description">
+                        <h3>Precision-Crafted Physical Model</h3>
+                        <p>Our 13.5cm Radius prototype with 8.5cm height demonstrates the mathematical accuracy and aesthetic beauty of the yin-yang pool design. Every curve, circle, and proportion precisely matches our equations.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Achievements -->
+            <div class="achievements-section" data-gsap="fade-up" data-delay="0.3">
+                <h3 class="section-subtitle">Key Achievements</h3>
+                <div class="achievements-dual-layout">
+                    <div class="achievement-column">
+                        <div class="achievement-box">
+                            <div class="achievement-badge">📐</div>
+                            <h4>Mathematical Foundation</h4>
+                            <ul class="achievement-list">
+                                <li>4 fundamental equations defining all geometry</li>
+                                <li>Parametric S-curve: x = 3sin(y/4)</li>
+                                <li>Circular boundary: x² + y² = 182.25</li>
+                                <li>Decorative circles with inequality usage</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="achievement-box">
+                            <div class="achievement-badge">🌐</div>
+                            <h4>3D Modeling & Fabrication</h4>
+                            <ul class="achievement-list">
+                                <li>Complete Blender model created</li>
+                                <li>Parabolic depth function applied</li>
+                                <li>STL file exported for 3D printing</li>
+                                <li>13.5cm physical prototype fabricated</li>
+                                <li>Construction-ready specifications</li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="achievement-column">
+                        <div class="achievement-box">
+                            <div class="achievement-badge">💻</div>
+                            <h4>Interactive Visualization in Website</h4>
+                            <ul class="achievement-list">
+                                <li>Three.js ,real-time 3D rendering</li>
+                                <li>Multiple camera view modes</li>
+                                <li>Scroll-triggered animations</li>
+                            </ul>
+                        </div>
+                        
+                                        
+                        <div class="achievement-box">
+                            <div class="achievement-badge">🔬</div>
+                            <h4>Interdisciplinary Integration</h4>
+                            <ul class="achievement-list">
+                                <li>Algebra: Equation systems</li>
+                                <li>Geometry: Drawing &  Calculations</li>
+                                <li>Trigonometry: Parametric functions</li>
+                                <li>Computer Science: 3D rendering, Website</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="section-calculator" id="calculator">
+        <div class="container">
+            <div class="section-header" data-gsap="fade-up">
+                <span class="section-label">SCALING CALCULATIONS</span>
+                <h2 class="section-title">Model to Real-Life Conversion</h2>
+                <p class="section-desc">From 13.5cm prototype to 13.5m full-size pool  8.5cm height to 8.5m depth</p>
+            </div>
+            
+            <div class="calculator-wrapper" data-gsap="fade-up" data-delay="0.2">
+                <div class="calculator-input">
+                    <h3>Scale Specifications</h3>
+                    <div class="scale-info">
+                        <div class="scale-item">
+                            <div class="scale-label">Model Size</div>
+                            <div class="scale-value">13.5 cm</div>
+                            <div class="scale-note">Radius</div>
+                        </div>
+                        <div class="scale-arrow">→</div>
+                        <div class="scale-item">
+                            <div class="scale-label">Real Pool Size</div>
+                            <div class="scale-value highlight">13.5 m</div>
+                            <div class="scale-note">Radius</div>
+                        </div>
+                    </div>
+                    <div class="ratio-display">
+                        <div class="ratio-label">Scale Ratio</div>
+                        <div class="ratio-value">1 : 100</div>
+                        <div class="ratio-note">Every 1cm in model = 1m in reality</div>
+                    </div>
+                    
+                    <!-- Image Gallery Section -->
+                    <!-- Add your images here using img tags -->
+                    <div class="image-gallery">
+                        <h4 class="image-gallery-title">Project Gallery: Design Process & Results</h4>
+                        <div class="image-gallery-grid">
+                           <div class="gallery-row">
+                               <img src="1.jpg" alt="" class="landscape">
+                               <img src="2.jpg" alt="" class="landscape">
+                           </div>
+                           <div class="gallery-row">
+                               <img src="team2.jpg" alt="">
+                               <img src="4.jpg" alt="">
+                           </div>
+                           <div class="gallery-row last-row">
+                               <img src="5.jpg" alt="">
+                               <img src="6.jpg" alt="">
+                               <img src="Blue White and Yellow Simple Out of Office Instagram Post.jpg" alt="">
+                           </div>
+                        </div>
+                    </div>
+            </div>
+                
+                <div class="calculator-results" id="results">   
+                    <h3>Pool Calculations</h3>
+                    
+                    <!-- Model Calculations Section -->
+                    <div class="calculation-section">
+                        <h4 class="calc-section-title">1) Model Calculations</h4>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-label">Model Radius</span>
+                                <span class="result-value" id="modelRadius">13.5 cm</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Model Depth</span>
+                                <span class="result-value" id="modelDepth">8.5 cm</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Total Model Area</span>
+                                <span class="result-value" id="modelArea">572.56 cm²</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Model Volume</span>
+                                <span class="result-value" id="modelVolume">4,886 cm³</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Yin Area (Half)</span>
+                                <span class="result-value" id="modelYinArea">286.28 cm²</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Yang Area (Half)</span>
+                                <span class="result-value" id="modelYangArea">286.28 cm²</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Real World Calculations Section -->
+                    <div class="calculation-section">
+                        <h4 class="calc-section-title">2) Real World Calculations</h4>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <span class="result-label">Real Radius</span>
+                                <span class="result-value" id="realRadius">13.5 m</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Real Depth</span>
+                                <span class="result-value" id="realDepth">8 m</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Total Real Area</span>
+                                <span class="result-value" id="realArea">572.56 m²</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Real Volume</span>
+                                <span class="result-value" id="realVolume">4,886 m³</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Real Volume in Liters</span>
+                                <span class="result-value" id="realLiters">4,886,000 L</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Yin/Yang Area Each</span>
+                                <span class="result-value" id="realYinYangArea">286.28 m²</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-note">
+                        <strong>Note:</strong> Model dimensions (13.5cm Radius, 8.5cm depth) scaled 1:100 to real-world dimensions (13.5m Radius, 17m depth).
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>YIN-YANG POOL</h3>
+                    <p>Mathematical innovation in pool design</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Project</h4>
+                        <a href="#design">3D Model</a>
+                        <a href="#equations">Equations</a>
+                        <a href="#journey">Our Journey</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Tools</h4>
+                        <a href="#calculator">Model to Real-Life</a>
+                        <a href="#equations">Documentation</a>
+                        <a href="#design">Download Model</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Yin-Yang Pool Design | Design & Development by <span style="background-color: white; color: black; padding: 6px;">Adham Wael Eldeeb</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
